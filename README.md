@@ -7,6 +7,6 @@
 ---
 (In Progress) Web application to manage your projects
 
-### to satart local dev server
+### to satart local dev server(backend)
 - yarn install
 - yarn watch && yarn dev 
