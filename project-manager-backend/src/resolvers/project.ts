@@ -1,14 +1,16 @@
-import { Project } from "../entities";
+import { Project, Task } from "../entities";
 import { MyContext } from "../types";
 import {
   Arg,
   Ctx,
   Field,
+  FieldResolver,
   InputType,
   Int,
   Mutation,
   Query,
   Resolver,
+  Root,
   UseMiddleware,
 } from "type-graphql";
 import { isAuth } from "../middleware/isAuth";
@@ -35,16 +37,20 @@ export class ProjectResolver {
    * @description get all projects of current user
    * @returns {Promise<Project[]>} array of projects
    */
+
+  @FieldResolver(() => [Task])
+  @UseMiddleware(isAuth)
+  tasks(@Root() project: Project, @Ctx() { taskLoader }: MyContext) {
+    return taskLoader.load(project.id);
+  }
+
   @Query(() => [Project])
   @UseMiddleware(isAuth)
   async myProjects(
     @Ctx()
     { req }: MyContext
   ): Promise<Project[]> {
-    return Project.find({
-      relations: ["tasks"],
-      where: { userId: req.session.userId },
-    });
+    return Project.find({ userId: req.session.userId });
   }
 
   /**
@@ -60,8 +66,8 @@ export class ProjectResolver {
     { req }: MyContext
   ): Promise<Project | undefined> {
     return Project.findOne({
-      relations: ["tasks"],
-      where: { id: projectId, userId: req.session.userId },
+      id: projectId,
+      userId: req.session.userId,
     });
   }
 

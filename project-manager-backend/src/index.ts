@@ -5,13 +5,14 @@ import app from "./app";
 import { env } from "./env";
 import { ProjectResolver, TaskResolver, UserResolver } from "./resolvers";
 import http from "http";
+import { createTaskLoader } from "./lib/dataloader/createTaskLoader";
 
 const main = async () => {
   /**
    * initialize apollo server
    */
   const apolloServer = new ApolloServer({
-    debug: false,
+    debug: true,
     schema: await buildSchema({
       resolvers: [UserResolver, ProjectResolver, TaskResolver],
       validate: false,
@@ -19,6 +20,7 @@ const main = async () => {
     context: ({ req, res }) => ({
       req,
       res,
+      taskLoader: createTaskLoader(),
     }),
   });
   /**
@@ -40,9 +42,6 @@ const main = async () => {
   server.listen(port, () => {
     console.log("Server started on Port", port);
   });
-  /*  app.listen(4000, () =>
-    console.log("project manager server running on port " + port)
-  ); */
 };
 
 main().catch((err) => console.log(err));
