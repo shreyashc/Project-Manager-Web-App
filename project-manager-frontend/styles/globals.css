@@ -21,4 +21,7 @@
   .signup-btn {
     @apply ml-2 p-2 px-3 bg-green-400 hover:bg-green-200 font-light rounded text-gray-900;
   }
+  .container {
+    @apply md:container md:mx-auto p-4;
+  }
 }
