@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  body {
+    @apply bg-gray-900 text-white h-screen;
+  }
+  nav {
+    @apply p-4 bg-white text-black;
+  }
+  .nav-links {
+    @apply flex items-center md:container md:mx-auto;
+  }
+  .nav-logo {
+    @apply font-light text-2xl text-gray-900;
+  }
+  .login-btn {
+    @apply ml-auto p-2 font-light;
+  }
+  .signup-btn {
+    @apply ml-2 p-2 px-3 bg-green-400 hover:bg-green-200 font-light rounded text-gray-900;
+  }
+}
