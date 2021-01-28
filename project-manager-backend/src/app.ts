@@ -13,10 +13,12 @@ const app = express();
 
 app.use(
   cors({
-    origin: env.app.origin,
+    origin: [env.app.origin, "http://localhost:3000"],
     credentials: true,
   })
 );
+
+
 
 //connect to pg db
 createConnection({
