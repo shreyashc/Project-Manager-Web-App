@@ -1,11 +1,19 @@
-import { withApollo as createWithApollo } from "next-apollo";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-
+import { NextPageContext } from "next";
+import { createWithApollo } from "./createWithApollo";
 const uri = "http://localhost:4000/graphql";
-const apolloClient = new ApolloClient({
-  uri,
-  credentials: "include",
-  cache: new InMemoryCache(),
-});
 
-export default createWithApollo(apolloClient);
+const createClient = (ctx: NextPageContext) =>
+  new ApolloClient({
+    uri,
+    credentials: "include",
+    headers: {
+      cookie:
+        (typeof window === "undefined"
+          ? ctx?.req?.headers.cookie
+          : undefined) || "",
+    },
+    cache: new InMemoryCache(),
+  });
+
+export const withApollo = createWithApollo(createClient);
