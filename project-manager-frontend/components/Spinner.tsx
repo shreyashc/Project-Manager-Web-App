@@ -1,9 +1,18 @@
-export const Spinner = () => {
+interface SpinnerProps {
+  size: "small" | "large";
+  color?: string;
+}
+
+const Spinner = ({ size, color = "text-blue-400" }: SpinnerProps) => {
   return (
-    <>
-      <div className="flex items-center justify-center m-4">
+    <div className="inline-block">
+      <span className="flex items-center justify-center">
         <svg
-          className="animate-spin -ml-1 mr-3 h-8 w-8 text-blue-400"
+          className={
+            size === "small"
+              ? `animate-spin h-5 w-5 ${color}`
+              : `animate-spin -ml-1 m-4 h-8 w-8 ${color}`
+          }
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
@@ -22,7 +31,9 @@ export const Spinner = () => {
             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
           ></path>
         </svg>
-      </div>
-    </>
+      </span>
+    </div>
   );
 };
+
+export default Spinner;

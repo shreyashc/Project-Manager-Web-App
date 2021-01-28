@@ -8,6 +8,7 @@ import {
   InputType,
   Int,
   Mutation,
+  ObjectType,
   Query,
   Resolver,
   Root,
@@ -27,6 +28,12 @@ class ProjectInput {
   description: string;
 }
 
+@ObjectType()
+class Projects {
+  @Field(() => [Project])
+  projects: Project[];
+}
+
 /**
  * Project Resolver
  */
@@ -44,13 +51,14 @@ export class ProjectResolver {
     return taskLoader.load(project.id);
   }
 
-  @Query(() => [Project])
+  @Query(() => Projects)
   @UseMiddleware(isAuth)
   async myProjects(
     @Ctx()
     { req }: MyContext
-  ): Promise<Project[]> {
-    return Project.find({ userId: req.session.userId });
+  ): Promise<Projects> {
+    const projects = await Project.find({ userId: req.session.userId });
+    return { projects };
   }
 
   /**

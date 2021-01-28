@@ -1,7 +1,9 @@
 query MyProjects {
   myProjects {
-    id
-    title
-    description
+    projects {
+      id
+      title
+      description
+    }
   }
 }

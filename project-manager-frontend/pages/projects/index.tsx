@@ -1,7 +1,8 @@
-import { Spinner } from "../../components/Spinner";
+import Spinner from "../../components/Spinner";
 import { useMyProjectsQuery } from "../../generated/graphql";
 import { withApollo } from "../../utils/withApollo";
 import Layout from "../../components/Layout";
+import Link from "next/link";
 
 const Projects = () => {
   const { data, loading } = useMyProjectsQuery();
@@ -13,31 +14,34 @@ const Projects = () => {
       </div>
     );
   }
+
   return (
     <Layout>
-      <div className="container">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center bg-blue-400 px-4 py-1 rounded">
-            <h2 className="my-6 font-semibold text-xl">My Projects</h2>
+      <div className="max-w-4xl mx-auto">
+        <div className="flex items-center bg-blue-400 px-4 py-1 rounded">
+          <h2 className="my-6 font-semibold text-xl">My Projects</h2>
+          <Link href="/create-project">
             <a className="mx-4 ml-auto text-gray-500 font-semibold bg-gray-100 py-1 px-2 rounded">
               Add Project
             </a>
-          </div>
-          {loading ? (
-            <Spinner />
-          ) : (
-            <div className="projects">
-              {data.myProjects.map((project) => (
-                <div className="project p-3 bg-gray-600 my-3" key={project.id}>
-                  <a>
-                    <h3 className="text-xl">{project.title}</h3>
-                    <p className="mt-2 text-gray-300">{project.description}</p>
-                  </a>
-                </div>
-              ))}
-            </div>
-          )}
+          </Link>
         </div>
+        {loading ? (
+          <div className="flex justify-center">
+            <Spinner size="large" />
+          </div>
+        ) : (
+          <div className="projects">
+            {data.myProjects.projects.map((project) => (
+              <div className="project p-3 bg-gray-600 my-3" key={project.id}>
+                <a>
+                  <h3 className="text-xl">{project.title}</h3>
+                  <p className="mt-2 text-gray-300">{project.description}</p>
+                </a>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </Layout>
   );

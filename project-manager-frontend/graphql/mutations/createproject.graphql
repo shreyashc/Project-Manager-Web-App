@@ -1,0 +1,7 @@
+mutation CreateProject($input: ProjectInput!) {
+  createProject(input: $input) {
+    id
+    title
+    description
+  }
+}
