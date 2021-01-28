@@ -1,0 +1,12 @@
+query projectDeatils($projectId: Int!) {
+  myProject(projectId: $projectId) {
+    id
+    title
+    description
+    tasks {
+      id
+      name
+      status
+    }
+  }
+}

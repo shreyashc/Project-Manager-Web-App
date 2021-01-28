@@ -34,10 +34,12 @@ const Projects = () => {
           <div className="projects">
             {data.myProjects.projects.map((project) => (
               <div className="project p-3 bg-gray-600 my-3" key={project.id}>
-                <a>
-                  <h3 className="text-xl">{project.title}</h3>
-                  <p className="mt-2 text-gray-300">{project.description}</p>
-                </a>
+                <Link href="/projects/[id]" as={`/projects/${project.id}`}>
+                  <a>
+                    <h3 className="text-xl">{project.title}</h3>
+                    <p className="mt-2 text-gray-300">{project.description}</p>
+                  </a>
+                </Link>
               </div>
             ))}
           </div>
