@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
               <h1 className="nav-logo">Project Manager</h1>
             </a>
           </Link>
-          {!data.me ? (
+          {!data ? (
             <>
               <Link href="/login">
                 <a className="login-btn">Login</a>
