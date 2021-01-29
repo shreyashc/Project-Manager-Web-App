@@ -9,7 +9,6 @@ import { useEnsureNoAuth } from "../../utils/useEnsureNoAuth";
 import { withApollo } from "../../utils/withApollo";
 
 const Login = () => {
-  useEnsureNoAuth();
   const router = useRouter();
   const [loginMutation] = useLoginMutation();
 

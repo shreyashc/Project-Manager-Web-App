@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
               <h1 className="nav-logo">Project Manager</h1>
             </a>
           </Link>
-          {!data ? (
+          {!data.me ? (
             <>
               <Link href="/login">
                 <a className="login-btn">Login</a>
@@ -53,4 +53,4 @@ const Navbar: React.FC = () => {
   );
 };
 
-export default withApollo({ ssr: false })(Navbar);
+export default withApollo({ ssr: true })(Navbar);

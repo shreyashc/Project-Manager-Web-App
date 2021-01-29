@@ -12,11 +12,9 @@ import {
   useProjectDeatilsQuery,
   useUpdateTaskStatusMutation,
 } from "../../generated/graphql";
-import { useEnsureAuth } from "../../utils/useEnsureAuth";
 import { withApollo } from "../../utils/withApollo";
 
 const ProjectDetails = () => {
-  useEnsureAuth();
   const router = useRouter();
   const projectId =
     typeof router.query.id === "string" ? parseInt(router.query.id) : -1;
