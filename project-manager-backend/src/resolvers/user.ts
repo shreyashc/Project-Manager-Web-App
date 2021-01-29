@@ -81,6 +81,32 @@ export class UserResolver {
       //hash password
       const password = await argon2.hash(plainPassword);
 
+      const ifEmailExists = await User.findOne({email});
+
+      if(ifEmailExists){
+        return {
+        errors: [
+          {
+            field: "email",
+            message: "Email already taken",
+          },
+        ],
+      };
+      }
+
+      const ifUsernmeExists = await User.findOne({username});
+
+      if(ifUsernmeExists){
+        return {
+        errors: [
+          {
+            field: "username",
+            message: "Username already taken",
+          },
+        ],
+      };
+      }
+
       const user = await User.create({
         email,
         username,
@@ -96,8 +122,8 @@ export class UserResolver {
       return {
         errors: [
           {
-            field: "username",
-            message: "username already taken",
+            field: "Password",
+            message: "Something went wrong",
           },
         ],
       };

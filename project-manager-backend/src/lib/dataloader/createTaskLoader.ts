@@ -13,5 +13,5 @@ export const createTaskLoader = () =>
         tasksToProjectId[task.projectId] = [task];
       }
     });
-    return projectIds.map((projectId) => tasksToProjectId[projectId]);
+    return projectIds.map((projectId) => tasksToProjectId[projectId] ? tasksToProjectId[projectId] : []);
   });
