@@ -5,7 +5,7 @@ import { withApollo } from "../utils/withApollo";
 const Navbar: React.FC = () => {
   const { data, loading } = useMeQuery();
 
-  if (loading) {
+  if (loading && !data) {
     return null;
   }
 
