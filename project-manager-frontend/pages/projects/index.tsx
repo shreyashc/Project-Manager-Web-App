@@ -3,9 +3,18 @@ import { useMyProjectsQuery } from "../../generated/graphql";
 import { withApollo } from "../../utils/withApollo";
 import Layout from "../../components/Layout";
 import Link from "next/link";
+import { useEnsureAuth } from "../../utils/useEnsureAuth";
+import { useRouter } from "next/router";
+import React from "react";
 
 const Projects = () => {
-  const { data, loading } = useMyProjectsQuery();
+  useEnsureAuth();
+  const router = useRouter();
+  const { data, loading, error } = useMyProjectsQuery();
+
+  if (error) {
+    router.replace("/login");
+  }
 
   if (!loading && !data) {
     return (

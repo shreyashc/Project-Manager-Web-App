@@ -1,0 +1,13 @@
+mutation Signup($options: RegisterInput!) {
+  register(options: $options) {
+    user {
+      id
+      username
+      email
+    }
+    errors {
+      field
+      message
+    }
+  }
+}

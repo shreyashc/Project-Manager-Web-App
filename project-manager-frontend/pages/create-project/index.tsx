@@ -6,7 +6,9 @@ import Spinner from "../../components/Spinner";
 import { useCreateProjectMutation } from "../../generated/graphql";
 import { withApollo } from "../../utils/withApollo";
 import { useRouter } from "next/router";
+import { useEnsureAuth } from "../../utils/useEnsureAuth";
 const CreateProject = () => {
+  useEnsureAuth();
   const router = useRouter();
   const [createProject] = useCreateProjectMutation();
   return (

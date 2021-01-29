@@ -24,4 +24,71 @@
   .container {
     @apply md:container md:mx-auto p-4;
   }
+
+  .add-task-from-wrapper {
+    @apply absolute top-0 left-0 flex items-center justify-center w-full h-full bg-gray-600 bg-opacity-60;
+  }
+  .add-task-from {
+    @apply bg-gray-800 h-auto p-4 lg:p-10 rounded-md mt-16 shadow-lg;
+  }
+  .add-task-head {
+    @apply font-bold text-3xl text-blue-300 text-center mb-4;
+  }
+  .form-text-input {
+    @apply border-0 mt-2 px-4 py-2 bg-gray-700 rounded-sm w-full text-gray-200 focus:outline-none focus:ring focus:border-blue-400 ring-blue-300;
+  }
+  .form-submit-btn {
+    @apply uppercase font-semibold w-full bg-blue-600 mt-2 py-2 rounded-sm focus:outline-none hover:bg-blue-500;
+  }
+  .form-cancel-btn {
+    @apply uppercase font-semibold w-full mt-8 py-2 rounded-sm border focus:outline-none hover:bg-gray-500 cursor-pointer text-center;
+  }
+  .project-details {
+    @apply max-w-4xl mx-auto mt-9 p-3;
+  }
+  .project-title {
+    @apply text-center text-2xl font-semibold;
+  }
+  .tabs-header {
+    @apply flex mt-8 text-lg -mb-px;
+  }
+  .tab-default {
+    @apply p-2 cursor-pointer;
+  }
+  .tab-selected {
+    @apply p-2 cursor-pointer text-yellow-300 font-semibold bg-gray-900 border-l border-t border-r rounded-t px-4;
+  }
+  .tasks {
+    @apply p-2 border rounded-b;
+  }
+  .add-task {
+    @apply ml-auto py-1 px-2 bg-green-600 rounded hover:bg-green-500 transition-colors;
+  }
+  .project-desc {
+    @apply p-2 border rounded-b rounded-r;
+  }
+  .delete-project {
+    @apply px-2 py-1 border text-red-500 rounded ml-auto hover:bg-red-100 transition-colors;
+  }
+  .signup-login-wrap {
+    @apply text-white flex-auto  m-3;
+  }
+  .signup-login-form {
+    @apply bg-gray-800 max-w-sm mx-auto p-4 rounded-md mt-16 shadow-lg;
+  }
+  .signup-login-head {
+    @apply font-bold text-3xl text-green-300 text-center mb-4;
+  }
+  .signup-login-field {
+    @apply border-0 mt-2 px-4 py-2 bg-gray-700 rounded-sm w-full text-gray-200 focus:outline-none focus:ring focus:border-green-400 ring-green-300;
+  }
+  .signup-login-submit {
+    @apply uppercase font-semibold tracking-wider w-full bg-green-600 text-green-50 mt-4 py-3 rounded-sm focus:outline-none hover:bg-green-500;
+  }
+  .signup-login-error {
+    @apply text-red-300 m-1;
+  }
+  .signup-login-link {
+    @apply text-center mt-2 text-gray-300;
+  }
 }

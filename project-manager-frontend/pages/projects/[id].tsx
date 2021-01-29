@@ -1,9 +1,10 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import AddTaskModal from "../../components/AddTaskModal";
+import AddTaskModal from "../../components/AddTaskModal/";
+import ProjectDetailsTab from "../../components/DetailsTab";
 import Layout from "../../components/Layout";
-import SingleTask from "../../components/SingleTask";
 import Spinner from "../../components/Spinner";
+import TasksTab from "../../components/TasksTab";
 import {
   useCreateTaskMutation,
   useDeleteProjectMutation,
@@ -11,9 +12,11 @@ import {
   useProjectDeatilsQuery,
   useUpdateTaskStatusMutation,
 } from "../../generated/graphql";
+import { useEnsureAuth } from "../../utils/useEnsureAuth";
 import { withApollo } from "../../utils/withApollo";
 
 const ProjectDetails = () => {
+  useEnsureAuth();
   const router = useRouter();
   const projectId =
     typeof router.query.id === "string" ? parseInt(router.query.id) : -1;
@@ -24,84 +27,55 @@ const ProjectDetails = () => {
   const [deleteProjectMutation] = useDeleteProjectMutation();
   const [deleteTaskMutation] = useDeleteTaskMutation();
   const [updateTaskStatusMutation] = useUpdateTaskStatusMutation();
-  const { data, loading } = useProjectDeatilsQuery({
+  const { data, loading, error } = useProjectDeatilsQuery({
     variables: { projectId },
   });
+
+  if (loading) {
+    return null;
+  }
+  if (error) {
+    return null;
+  }
+
+  if (!data.myProject) {
+    return null;
+  }
 
   return (
     <Layout>
       {loading && !data?.myProject ? (
         <Spinner size="large" />
       ) : (
-        <div className="max-w-4xl mx-auto mt-9 p-3">
-          <h3 className="text-center text-2xl font-semibold">
-            {data.myProject.title}
-          </h3>
-          <div className="flex mt-8 text-lg -mb-px">
+        <div className="project-details">
+          <h3 className="project-title">{data.myProject.title}</h3>
+          <div className="tabs-header">
             <h4
               onClick={() => setTab("tasks")}
-              className={
-                tab === "tasks"
-                  ? "p-2 cursor-pointer text-yellow-300 font-semibold bg-gray-900 border-l border-t border-r rounded-t px-4"
-                  : "p-2 cursor-pointer"
-              }
+              className={tab === "tasks" ? "tab-selected" : "tab-default"}
             >
               Tasks
             </h4>
             <h4
               onClick={() => setTab("details")}
-              className={
-                tab === "details"
-                  ? "p-2 cursor-pointer text-yellow-300 font-semibold bg-gray-900 border-l border-t border-r rounded-t px-4"
-                  : "p-2 cursor-pointer"
-              }
+              className={tab === "details" ? "tab-selected" : "tab-default"}
             >
               Details
             </h4>
           </div>
           {tab === "tasks" ? (
-            <div className="p-2 border rounded-b ">
-              {data.myProject.tasks.map((task) => (
-                <SingleTask
-                  key={task.id}
-                  task={task}
-                  deleteTaskMutation={deleteTaskMutation}
-                  updateTaskStatusMutation={updateTaskStatusMutation}
-                />
-              ))}
-
-              <div className="flex space-x-4 mt-5">
-                <button
-                  onClick={() => setShowModal(true)}
-                  className="ml-auto py-1 px-2 bg-green-600 rounded hover:bg-green-500 transition-colors"
-                >
-                  Add Task
-                </button>
-              </div>
-            </div>
+            <TasksTab
+              tasks={data.myProject.tasks}
+              deleteTaskMutation={deleteTaskMutation}
+              updateTaskStatusMutation={updateTaskStatusMutation}
+              setShowModal={setShowModal}
+            />
           ) : (
-            <div className="p-2 border rounded-b rounded-r">
-              <p>{data.myProject.description}</p>
-              <div className="mt-4 mb-2 flex">
-                <button
-                  onClick={async () => {
-                    await deleteProjectMutation({
-                      variables: { projectId },
-                      update: (cache) => {
-                        cache.evict({
-                          id: "Project:" + data.myProject.id,
-                        });
-                        cache.gc();
-                      },
-                    });
-                    router.push("/projects");
-                  }}
-                  className="px-2 py-1 border text-red-500 rounded ml-auto hover:bg-red-100 transition-colors"
-                >
-                  Delete Project
-                </button>
-              </div>
-            </div>
+            <ProjectDetailsTab
+              projectId={projectId}
+              projectDesc={data.myProject.description}
+              deleteProjectMutation={deleteProjectMutation}
+            />
           )}
         </div>
       )}
