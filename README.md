@@ -1,5 +1,6 @@
 # Project-Manager-Web-App
-## live - [project-manager.shreyashc.vercel.app](https://project-manager.shreyashc.vercel.app/)
+## Live - [project-manager.shreyashc.vercel.app](https://project-manager.shreyashc.vercel.app/)
+## GraphQL Playground - [hc-project-manager.herokuapp.com/graphql](https://hc-project-manager.herokuapp.com/graphql)
 
 Simple Web application to manage your projects
 
