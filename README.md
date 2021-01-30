@@ -1,5 +1,5 @@
 # Project-Manager-Web-App
-## live - [project-manager.shreyashc.vercel.app](https://shreyashc.github.io/poll-app/)
+## live - [project-manager.shreyashc.vercel.app](https://project-manager.shreyashc.vercel.app/)
 
 Simple Web application to manage your projects
 
