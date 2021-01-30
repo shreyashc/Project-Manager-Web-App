@@ -18,7 +18,7 @@ const pgSession = connectPgSimple(session);
 
 const main = async () => {
   const app = express();
-  app.set("trust proxy", 1);
+  app.set("trust proxy", true);
   app.use(
     cors({
       origin: [env.app.origin, "http://localhost:3000"],
