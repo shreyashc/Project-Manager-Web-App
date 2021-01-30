@@ -45,7 +45,7 @@ const main = async () => {
 
   await con.runMigrations();
 
-  //pool of sessions
+  //pool of sessions//
   const sessionPool = pg.Pool;
   const sessionDBaccess = new sessionPool({
     host: env.db.host,
