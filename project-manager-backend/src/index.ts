@@ -79,7 +79,7 @@ const main = async () => {
     resave: false,
     cookie: {
       httpOnly: true,
-      sameSite: "none",
+      sameSite: "lax",
       secure: true,
       maxAge: 5 * 12 * 30 * 24 * 60 * 60 * 1000,
     },
