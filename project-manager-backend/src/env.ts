@@ -37,6 +37,7 @@ export const env = {
   db: {
     type: getOsEnv("TYPEORM_CONNECTION"),
     host: getOsEnvOptional("TYPEORM_HOST"),
+    url: getOsEnv("TYPEORM_URL"),
     port: toNumber(getOsEnvOptional("TYPEORM_PORT")!),
     username: getOsEnvOptional("TYPEORM_USERNAME"),
     password: getOsEnvOptional("TYPEORM_PASSWORD"),
