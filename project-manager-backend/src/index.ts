@@ -20,7 +20,7 @@ const main = async () => {
 
   app.use(
     cors({
-      origin: [env.app.origin, "http://localhost:3000"],
+      origin: env.app.origin,
       credentials: true,
     })
   );
