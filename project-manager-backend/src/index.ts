@@ -81,7 +81,8 @@ const main = async () => {
    * initialize apollo server
    */
   const apolloServer = new ApolloServer({
-    debug: true,
+    debug: false,
+    introspection: true,
     schema: await buildSchema({
       resolvers: [UserResolver, ProjectResolver, TaskResolver],
       validate: false,
