@@ -27,7 +27,7 @@ const main = async () => {
         if (!origin) return callback(null, true);
         console.log(allowedOrigins.indexOf(origin) === -1);
         if (allowedOrigins.indexOf(origin) === -1) {
-          var err = Error("Origin not allowed");
+          var err = new Error("Origin not allowed");
           return callback(err, false);
         }
         return callback(null, true);
