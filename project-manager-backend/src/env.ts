@@ -44,7 +44,4 @@ export const env = {
     synchronize: toBool(getOsEnvOptional("TYPEORM_SYNCHRONIZE")!),
     logging: toBool(getOsEnv("TYPEORM_LOGGING")),
   },
-  graphql: {
-    enabled: toBool(getOsEnv("GRAPHQL_ENABLED")),
-  },
 };
