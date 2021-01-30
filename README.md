@@ -1,12 +1,15 @@
 # Project-Manager-Web-App
----
-## Express - Nodejs
-## Graphql - Apollo 
-## NextJs - Reactjs
-## Typescript
----
-(In Progress) Web application to manage your projects
+## live - [project-manager.shreyashc.vercel.app](https://shreyashc.github.io/poll-app/)
 
-### to satart local dev server(backend)
-- yarn install
-- yarn watch && yarn dev 
+Simple Web application to manage your projects
+
+
+| Frontend      | Backend       |
+|:-------------:|:-------------:|
+| React         | Nodejs        |
+| NextJS        | Express       |
+| Tailwindcss   | GraphQL       |
+| Apollo Client | Apollo Server |
+| Formic        | PostgreSQL + TypeORM|
+| Typescript    | Typescript    |
+| vercel        | Heroku        |
