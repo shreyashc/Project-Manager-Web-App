@@ -3,7 +3,7 @@ import connectPgSimple from "connect-pg-simple";
 import cors from "cors";
 import express from "express";
 import session, { SessionOptions } from "express-session";
-import http from "http";
+// import http from "http";
 import path from "path";
 import pg from "pg";
 import "reflect-metadata";
@@ -108,11 +108,14 @@ const main = async () => {
   const port = env.app.port || 4000;
   app.set("port", port);
 
-  const server = http.createServer(app);
-
-  server.listen(port, () => {
+  app.listen(port, () => {
     console.log("Server started on Port", port);
   });
+  // const server = http.createServer(app);
+  // server;
+  // server.listen(port, () => {
+  //   console.log("Server started on Port", port);
+  // });
 };
 
 main().catch((err) => console.log(err));
