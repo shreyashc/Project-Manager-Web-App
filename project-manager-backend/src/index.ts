@@ -18,9 +18,20 @@ const pgSession = connectPgSimple(session);
 const main = async () => {
   const app = express();
 
+  const allowedOrigins = env.app.origin.split(",");
+
   app.use(
     cors({
-      origin: env.app.origin,
+      origin: function (origin, callback) {
+        console.log("Request Origin: ", origin);
+        if (!origin) return callback(null, true);
+        console.log(allowedOrigins.indexOf(origin) === -1);
+        if (allowedOrigins.indexOf(origin) === -1) {
+          var err = Error("Origin not allowed");
+          return callback(err, false);
+        }
+        return callback(null, true);
+      },
       credentials: true,
       methods: ["POST", "PATCH", "GET", "OPTIONS", "HEAD", "DELETE"],
     })
