@@ -11,7 +11,19 @@ const Navbar: React.FC = () => {
   const [logoutMutation] = useLogoutMutation();
 
   if (loading && !data) {
-    return null;
+    return (
+      <header>
+        <nav>
+          <div className="nav-links">
+            <Link href="/">
+              <a>
+                <h1 className="nav-logo">Project Manager</h1>
+              </a>
+            </Link>
+          </div>
+        </nav>
+      </header>
+    );
   }
 
   return (
