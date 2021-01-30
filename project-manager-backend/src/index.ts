@@ -111,7 +111,7 @@ const main = async () => {
   app.listen(port, () => {
     console.log("Server started on Port", port);
   });
-  
+  console.log(env.app.origin);
 };
 
 main().catch((err) => console.log(err));
