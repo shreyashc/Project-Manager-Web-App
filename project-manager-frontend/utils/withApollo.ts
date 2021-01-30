@@ -2,11 +2,9 @@ import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { NextPageContext } from "next";
 import { createWithApollo } from "./createWithApollo";
 
-const uri = "https://hc-project-manager.herokuapp.com/graphql/";
-
 const createClient = (ctx: NextPageContext) =>
   new ApolloClient({
-    uri,
+    uri: process.env.NEXT_PUBLIC_API,
     credentials: "include",
     headers: {
       cookie:
