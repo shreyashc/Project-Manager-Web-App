@@ -22,6 +22,7 @@ const main = async () => {
     cors({
       origin: env.app.origin,
       credentials: true,
+      methods: ["POST", "PATCH", "GET", "OPTIONS", "HEAD", "DELETE"],
     })
   );
 
